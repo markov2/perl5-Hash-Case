@@ -1,33 +1,33 @@
 
-package Hash::Case::Lower;
+package Hash::Case::Upper;
 use base 'Hash::Case';
 
-$VERSION = 1.002;
+$VERSION = 1.003;
 
-use strict;
 use Carp;
+use strict;
 
 =head1 NAME
 
-Hash::Case::Lower - hash with enforced lower cased keys
+Hash::Case::Upper - native hash with enforced lower cased keys
 
 =head1 CLASS HIERARCHY
 
- Hash::Case::Lower
+ Hash::Case::Upper
  is a Hash::Case
  is a Tie::StdHash
  is a Tie::Hash
 
 =head1 SYNOPSIS
 
- use Hash::Case::Lower;
- tie my(%lchash), 'Hash::Case::Lower';
- $lchash{StraNGeKeY} = 3;
- print keys %lchash;  # strangekey
+ use Hash::Case::Upper;
+ tie my(%uchash), 'Hash::Case::Upper';
+ $uchash{StraNGeKeY} = 3;
+ print keys %uchash;  # STRANGEKEY
 
 =head1 DESCRIPTION
 
-Hash::Case::Lower extends Hash::Case, which lets you play various trics
+Hash::Case::Upper extends Hash::Case, which lets you play various trics
 with hash keys.  See L<Hash::Case> for the other implementations.
 
 =head1 METHODS
@@ -38,9 +38,9 @@ with hash keys.  See L<Hash::Case> for the other implementations.
 
 #-------------------------------------------
 
-=item tie HASH, 'Hash::Case::Lower', [VALUES,] OPTIONS
+=item tie HASH, 'Hash::Case::Upper', [VALUES,] OPTIONS
 
-Define HASH to have only lower cased keys.  The hash is
+Define HASH to have only upper cased keys.  The hash is
 initialized with the VALUES, specified as ref-array or
 ref-hash.  Currently, there are no OPTIONS defined.
 
@@ -49,9 +49,9 @@ ref-hash.  Currently, there are no OPTIONS defined.
 sub init($)
 {   my ($self, $args) = @_;
 
-    $self->SUPER::init($args);
+    $self->SUPER::native_init($args);
 
-    croak "No options defined for ".__PACKAGE__
+    croak "No options available for ".__PACKAGE__
         if keys %$args;
 
     $self;
@@ -59,10 +59,10 @@ sub init($)
 
 #-------------------------------------------
 
-sub FETCH($)  { $_[0]->{lc $_[1]} }
-sub STORE($$) { $_[0]->{lc $_[1]} = $_[2] }
-sub EXISTS($) { exists $_[0]->{lc $_[1]} }
-sub DELETE($) { delete $_[0]->{lc $_[1]} }
+sub FETCH($)  { $_[0]->{uc $_[1]} }
+sub STORE($$) { $_[0]->{uc $_[1]} = $_[2] }
+sub EXISTS($) { exists $_[0]->{uc $_[1]} }
+sub DELETE($) { delete $_[0]->{uc $_[1]} }
 
 #-------------------------------------------
 
@@ -71,7 +71,7 @@ sub DELETE($) { delete $_[0]->{lc $_[1]} }
 =head1 SEE ALSO
 
 L<Hash::Case>
-L<Hash::Case::Upper>
+L<Hash::Case::Lower>
 L<Hash::Case::Preserve>
 
 =head1 AUTHOR
@@ -82,9 +82,9 @@ it and/or modify it under the same terms as Perl itself.
 
 =head1 VERSION
 
-This code is beta, version 1.002
+This code is beta, version 1.003
 
-Copyright (c) 2002 Mark Overmeer. All rights reserved.
+Copyright (c) 2002-2003 Mark Overmeer. All rights reserved.
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 

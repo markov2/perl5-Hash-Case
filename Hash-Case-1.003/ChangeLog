@@ -1,4 +1,15 @@
 
+version 1.003: Mon Oct 27 07:58:44 CET 2003
+
+	- Added methods addPairs() and addHashData() to initialize a
+	  hash with values.
+
+	- Use Test::More i.s.o. Test
+
+	- Move pm files to a new lib/ directory
+
+	- Copyrights also in 2003
+
 version 1.002: Fri Aug  2 16:48:23 CEST 2002
 
 	- Changed my e-mail address to mark@overmeer.net

@@ -3,7 +3,7 @@
 package Hash::Case::Preserve;
 use base 'Hash::Case';
 
-$VERSION = 1.002;
+$VERSION = 1.003;
 
 use strict;
 use Carp;
@@ -63,7 +63,8 @@ Defaults to LAST, which is slightly faster.
 sub init($)
 {   my ($self, $args) = @_;
 
-    $self->SUPER::init($args);
+    $self->{HCP_data} = {};
+    $self->{HCP_keys} = {};
 
     my $keep = $args->{keep} || 'LAST';
     if($keep eq 'LAST')     { $self->{HCP_update} = 1 }
@@ -72,9 +73,7 @@ sub init($)
     {   croak "Use 'FIRST' or 'LAST' with the option keep.\n";
     }
 
-    $self->{HCP_data} = {};
-    $self->{HCP_keys} = {};
-    $self;
+    $self->SUPER::native_init($args);
 }
 
 #-------------------------------------------
@@ -140,9 +139,9 @@ it and/or modify it under the same terms as Perl itself.
 
 =head1 VERSION
 
-This code is beta, version 1.002
+This code is beta, version 1.003
 
-Copyright (c) 2002 Mark Overmeer. All rights reserved.
+Copyright (c) 2002-2003 Mark Overmeer. All rights reserved.
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
