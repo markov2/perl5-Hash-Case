@@ -1,0 +1,91 @@
+
+package Hash::Case::Upper;
+use base 'Hash::Case';
+
+$VERSION = 1.001;
+
+use Carp;
+use strict;
+
+=head1 NAME
+
+Hash::Case::Upper - hash with enforced lower cased keys
+
+=head1 CLASS HIERARCHY
+
+ Hash::Case::Upper
+ is a Hash::Case
+ is a Tie::StdHash
+ is a Tie::Hash
+
+=head1 SYNOPSIS
+
+ use Hash::Case::Upper;
+ tie my(%uchash), 'Hash::Case::Upper';
+ $uchash{StraNGeKeY} = 3;
+ print keys %uchash;  # STRANGEKEY
+
+=head1 DESCRIPTION
+
+Hash::Case::Upper extends Hash::Case, which lets you play various trics
+with hash keys.  See L<Hash::Case> for the other implementations.
+
+=head1 METHODS
+
+=over 4
+
+=cut
+
+#-------------------------------------------
+
+=item tie HASH, 'Hash::Case::Upper', [VALUES,] OPTIONS
+
+Define HASH to have only upper cased keys.  The hash is
+initialized with the VALUES, specified as ref-array or
+ref-hash.  Currently, there are no OPTIONS defined.
+
+=cut
+
+sub init($)
+{   my ($self, $args) = @_;
+
+    croak "No options defined for ".__PACKAGE__
+        if keys %$args;
+
+    $self;
+}
+
+#-------------------------------------------
+
+sub FETCH($)  { $_[0]->{uc $_[1]} }
+sub STORE($$) { $_[0]->{uc $_[1]} = $_[2] }
+sub EXISTS($) { exists $_[0]->{uc $_[1]} }
+sub DELETE($) { delete $_[0]->{uc $_[1]} }
+
+#-------------------------------------------
+
+=back
+
+=head1 SEE ALSO
+
+L<Hash::Case>
+L<Hash::Case::Lower>
+L<Hash::Case::Preserve>
+
+=head1 AUTHOR
+
+Mark Overmeer (F<mailbox@overmeer.net>).
+All rights reserved.  This program is free software; you can redistribute
+it and/or modify it under the same terms as Perl itself.
+
+=head1 VERSION
+
+This code is beta, version 1.001
+
+Copyright (c) 2002 Mark Overmeer. All rights reserved.
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+1;

@@ -1,0 +1,11 @@
+ChangeLog
+Hash/Case.pm
+Hash/Case/Lower.pm
+Hash/Case/Upper.pm
+Hash/Case/Preserve.pm
+Makefile.PL
+t/10lower.t
+t/20upper.t
+t/30pres1.t
+t/31pres2.t
+MANIFEST

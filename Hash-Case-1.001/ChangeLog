@@ -1,0 +1,15 @@
+
+version 1.001: Sat Jun 15 13:29:55 CEST 2002
+
+	This code is fully tested, and too simple to be true, so I release
+	it without hesitation as stable.
+
+	- Initial implementation of Hash::Case
+
+	- Initial implementation of Hash::Case::Lower, tests in t/10lower.t
+
+	- Initial implementation of Hash::Case::Upper, tests in t/20upper.t
+
+	- Initial implementation of Hash::Case::Preserve, tests in t/30pres1.t
+
+	- Initial implementation of Hash::Case::Preserve, tests in t/31pres2.t
