@@ -7,7 +7,7 @@ use Tie::Hash;
 use strict;
 use Carp;
 
-our $VERSION = 1.001;
+our $VERSION = 1.002;
 
 =head1 NAME
 
@@ -91,7 +91,10 @@ sub TIEHASH(@)
     my $self  = (bless {}, $class)->init( \%opts );
 
     if(!defined $to)          { ;}
-    elsif(ref $to eq 'ARRAY') { $self->STORE(splice @$to, 0, 2) while @$to }
+    elsif(ref $to eq 'ARRAY')
+    {   my @store = @$to;
+        $self->STORE(shift @store, shift @store) while @store;
+    }
     elsif(ref $to eq 'HASH')
     {   while(my ($k, $v) = each %$to)
         {   $self->STORE($k, $v);
@@ -101,6 +104,8 @@ sub TIEHASH(@)
 
     $self;
 }
+
+sub init($) {shift}
 
 #-------------------------------------------
 
@@ -112,13 +117,13 @@ L<Hash::Case::Preserve>
 
 =head1 AUTHOR
 
-Mark Overmeer (F<mailbox@overmeer.net>).
+Mark Overmeer (F<mark@overmeer.net>).
 All rights reserved.  This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
 
 =head1 VERSION
 
-This code is beta, version 1.001
+This code is beta, version 1.002
 
 Copyright (c) 2002 Mark Overmeer. All rights reserved.
 This program is free software; you can redistribute it and/or modify

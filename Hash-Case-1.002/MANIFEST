@@ -3,6 +3,7 @@ Hash/Case.pm
 Hash/Case/Lower.pm
 Hash/Case/Upper.pm
 Hash/Case/Preserve.pm
+Hash/Makefile.PL
 Makefile.PL
 t/10lower.t
 t/20upper.t

@@ -1,4 +1,16 @@
 
+version 1.002: Fri Aug  2 16:48:23 CEST 2002
+
+	- Changed my e-mail address to mark@overmeer.net
+
+	- Added Hash::Case::init() as dummy.
+
+	- Some configuration problems fixed.
+
+	- An array passed as initializer for the hash was cleaned in
+	  the process, which is not nice, of course.
+	  Reported by [Jenda Krynicky]
+
 version 1.001: Sat Jun 15 13:29:55 CEST 2002
 
 	This code is fully tested, and too simple to be true, so I release

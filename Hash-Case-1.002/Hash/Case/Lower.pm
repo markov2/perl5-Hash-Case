@@ -2,7 +2,7 @@
 package Hash::Case::Lower;
 use base 'Hash::Case';
 
-$VERSION = 1.001;
+$VERSION = 1.002;
 
 use strict;
 use Carp;
@@ -49,6 +49,8 @@ ref-hash.  Currently, there are no OPTIONS defined.
 sub init($)
 {   my ($self, $args) = @_;
 
+    $self->SUPER::init($args);
+
     croak "No options defined for ".__PACKAGE__
         if keys %$args;
 
@@ -74,13 +76,13 @@ L<Hash::Case::Preserve>
 
 =head1 AUTHOR
 
-Mark Overmeer (F<mailbox@overmeer.net>).
+Mark Overmeer (F<mark@overmeer.net>).
 All rights reserved.  This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
 
 =head1 VERSION
 
-This code is beta, version 1.001
+This code is beta, version 1.002
 
 Copyright (c) 2002 Mark Overmeer. All rights reserved.
 This program is free software; you can redistribute it and/or modify
