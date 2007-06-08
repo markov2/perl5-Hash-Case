@@ -1,4 +1,12 @@
 
+version 1.004: Fri Jun  8 15:37:31 CEST 2007
+
+	- fixed 2 typo's in POD (Thanks to CPANTS)
+
+	- add t/pod.t
+
+	- use oodist to create docs.
+
 version 1.003: Mon Oct 27 07:58:44 CET 2003
 
 	- Added methods addPairs() and addHashData() to initialize a

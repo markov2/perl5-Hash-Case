@@ -7,26 +7,18 @@ use Tie::Hash;
 use strict;
 use Carp;
 
-our $VERSION = 1.003;
-
-=head1 NAME
+=chapter NAME
 
 Hash::Case - base class for hashes with key-casing requirements
 
-=head1 CLASS HIERARCHY
-
- Hash::Case
- is a Tie::StdHash
- is a Tie::Hash
-
-=head1 SYNOPSIS
+=chapter SYNOPSIS
 
  use Hash::Case::Lower;
  tie my(%lchash), 'Hash::Case::Lower';
  $lchash{StraNGeKeY} = 3;
  print keys %lchash;  # strangekey
 
-=head1 DESCRIPTION
+=chapter DESCRIPTION
 
 Hash::Case is the base class for various classes which tie special
 treatment for the casing of keys.  Be aware of the differences in
@@ -57,22 +49,16 @@ The actual casing is ignored, but not forgotten.
 
 =back
 
-=head1 METHODS
+=chapter METHODS
 
-=over 4
-
-=cut
-
-#-------------------------------------------
-
-=item tie HASH, TIE, [VALUES,] OPTIONS
+=tie tie HASH, TIE, [VALUES,] OPTIONS
 
 Tie the HASH with the TIE package which extends L<Hash::Case>.  The OPTIONS
 differ per implementation: read the manual page for the package you actually
 use.  The VALUES is a reference to an array containing key-value pairs,
 or a reference to a hash: they fill the initial hash.
 
-Examples:
+=examples
 
  my %x;
  tie %x, 'Hash::Case::Lower';
@@ -123,9 +109,7 @@ sub wrapper_init($)
     $self;
 }
 
-#-------------------------------------------
-
-=item addPairs PAIRS
+=method addPairs PAIRS
 
 Specify an even length list of alternating key and value to be stored in
 the hash.
@@ -138,9 +122,7 @@ sub addPairs(@)
     $self;
 }
 
-#-------------------------------------------
-
-=item addHashData HASH
+=method addHashData HASH
 
 Add the data of a hash (passed as reference) to the created tied hash.  The
 existing values in the hash remain, the keys are adapted to the needs of the
@@ -154,9 +136,7 @@ sub addHashData($)
     $self;
 }
 
-#-------------------------------------------
-
-=item setHash HASH
+=method setHash HASH
 
 The functionality differs for native and wrapper hashes.  For native
 hashes, this is the same as first clearing the hash, and then a call
@@ -170,29 +150,5 @@ sub setHash($)
     %$self = %$hash;
     $self;
 }
-
-#-------------------------------------------
-
-=head1 SEE ALSO
-
-L<Hash::Case::Lower>
-L<Hash::Case::Upper>
-L<Hash::Case::Preserve>
-
-=head1 AUTHOR
-
-Mark Overmeer (F<mark@overmeer.net>).
-All rights reserved.  This program is free software; you can redistribute
-it and/or modify it under the same terms as Perl itself.
-
-=head1 VERSION
-
-This code is beta, version 1.003
-
-Copyright (c) 2002-2003 Mark Overmeer. All rights reserved.
-This program is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
 
 1;
