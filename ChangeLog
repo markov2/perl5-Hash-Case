@@ -1,4 +1,13 @@
 
+==== version history of Hash::Case
+All change made by Mark Overmeer.
+
+version 1.005: Wed Jun 18 09:02:28 CEST 2008
+
+	- require perl 5.6.0 [cpantesters]
+
+	- minor distribution clean-ups
+
 version 1.004: Fri Jun  8 15:37:31 CEST 2007
 
 	- fixed 2 typo's in POD (Thanks to CPANTS)

@@ -2,10 +2,13 @@
 package Hash::Case;
 
 use Tie::Hash;
-@ISA = 'Tie::StdHash';
+use base 'Tie::StdHash';
 
+use warnings;
 use strict;
+
 use Carp;
+use Tie::Hash;
 
 =chapter NAME
 

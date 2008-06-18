@@ -7,7 +7,7 @@ use Test::More;
 
 use lib qw/. t/;
 
-BEGIN {plan tests => 31}
+BEGIN {plan tests => 35}
 
 use Hash::Case::Upper;
 
@@ -70,3 +70,12 @@ cmp_ok(keys %b, '==',  2);
 ok(defined $b{abc});
 cmp_ok($b{ABC}, '==',  3);
 cmp_ok($b{DeF}, '==',  4);
+
+### test boolean context (bug reported by Dmitry Bolshakoff)
+
+tie my %c, 'Hash::Case::Upper';
+is((%c ? 'yes' : 'no'),  'no',  'empty');
+is((!%c ? 'yes' : 'no'), 'yes', 'empty');
+$c{111} = 222;
+is((%c ? 'yes' : 'no'),  'yes', 'not empty');
+is((!%c ? 'yes' : 'no'), 'no',  'not empty');
