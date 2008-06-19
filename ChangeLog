@@ -1,6 +1,10 @@
-
 ==== version history of Hash::Case
 All change made by Mark Overmeer.
+
+version 1.006: Thu Jun 19 08:40:46 CEST 2008
+
+	- perl5.005 does not understand "use 5.6.0" and tie bug in 5.6.2.
+	  So require 5.008 [cpantesters]
 
 version 1.005: Wed Jun 18 09:02:28 CEST 2008
 

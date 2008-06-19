@@ -1,10 +1,10 @@
 use ExtUtils::MakeMaker;
 
-use 5.6.0;
+use 5.008;
 
 WriteMakefile
   ( NAME	 => 'Hash::Case'
-  , VERSION      => '1.005'
+  , VERSION      => '1.006'
   , PREREQ_PM    =>
     { Test::More => 0.47
     }
