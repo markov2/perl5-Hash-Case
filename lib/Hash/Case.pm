@@ -74,7 +74,6 @@ or a reference to a hash: they fill the initial hash.
 
  my %z = (ABC => 3, DeF => 4);
  tie %x, 'Hash::Case::Lower', \%z;
-
 =cut
 
 sub TIEHASH(@)

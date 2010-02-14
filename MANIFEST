@@ -10,4 +10,4 @@ t/10lower.t
 t/20upper.t
 t/30pres1.t
 t/31pres2.t
-t/pod.t
+t/99pod.t
