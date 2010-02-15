@@ -1,14 +1,12 @@
-
-package Hash::Case;
-
-use Tie::Hash;
-use base 'Tie::StdHash';
-
 use warnings;
 use strict;
 
-use Carp;
-use Tie::Hash;
+package Hash::Case;
+
+use Tie::Hash;  # contains Tie::StdHash
+use base 'Tie::StdHash';
+
+use Log::Report 'hash-case';
 
 =chapter NAME
 
@@ -54,6 +52,8 @@ The actual casing is ignored, but not forgotten.
 
 =chapter METHODS
 
+=section Constructors
+
 =tie tie HASH, TIE, [VALUES,] OPTIONS
 
 Tie the HASH with the TIE package which extends L<Hash::Case>.  The OPTIONS
@@ -92,7 +92,7 @@ sub native_init($)
        if(!$add)               { ; }
     elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
     elsif(ref $add eq 'HASH')  { $self->addHashData($add)  }
-    else { croak "Cannot initialize the native hash this way." }
+    else { error "cannot initialize the native hash this way" }
 
     $self;
 }
@@ -106,16 +106,14 @@ sub wrapper_init($)
        if(!$add)               { ; }
     elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
     elsif(ref $add eq 'HASH')  { $self->setHash($add)  }
-    else { croak "Cannot initialize a wrapping hash this way." }
+    else { error "cannot initialize a wrapping hash this way" }
 
     $self;
 }
 
 =method addPairs PAIRS
-
 Specify an even length list of alternating key and value to be stored in
 the hash.
-
 =cut
 
 sub addPairs(@)
@@ -125,11 +123,9 @@ sub addPairs(@)
 }
 
 =method addHashData HASH
-
 Add the data of a hash (passed as reference) to the created tied hash.  The
 existing values in the hash remain, the keys are adapted to the needs of the
 the casing.
-
 =cut
 
 sub addHashData($)
@@ -139,12 +135,10 @@ sub addHashData($)
 }
 
 =method setHash HASH
-
 The functionality differs for native and wrapper hashes.  For native
 hashes, this is the same as first clearing the hash, and then a call
-to addHashData.  Wrapper hashes will use the hash you specify here
+to M<addHashData()>.  Wrapper hashes will use the hash you specify here
 to store the data, and re-create the mapping hash.
-
 =cut
 
 sub setHash($)

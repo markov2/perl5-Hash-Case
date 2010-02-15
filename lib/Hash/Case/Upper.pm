@@ -1,9 +1,10 @@
+use strict;
+use warnings;
 
 package Hash::Case::Upper;
 use base 'Hash::Case';
 
-use Carp;
-use strict;
+use Log::Report 'hash-case';
 
 =chapter NAME
 
@@ -18,10 +19,13 @@ Hash::Case::Upper - native hash with enforced lower cased keys
 
 =chapter DESCRIPTION
 
-C<Hash::Case::Upper> extends M<Hash::Case>, which lets you play various trics
-with hash keys.  See M<Hash::Case> for the other implementations.
+Hash::Case::Upper extends M<Hash::Case>, which lets you play various
+trics with hash keys. In this implementation, the fake hash is case
+insensitive and the keys stored in upper-case.
 
 =chapter METHODS
+
+=section Constructors
 
 =tie tie HASH, 'Hash::Case::Upper', [VALUES,] OPTIONS
 
@@ -36,7 +40,7 @@ sub init($)
 
     $self->SUPER::native_init($args);
 
-    croak "No options available for ".__PACKAGE__
+    error __x"no options available for {pkg}", pkg => __PACKAGE__
         if keys %$args;
 
     $self;

@@ -4,9 +4,10 @@ use 5.008;
 
 WriteMakefile
   ( NAME	 => 'Hash::Case'
-  , VERSION      => '1.007'
+  , VERSION      => '1.01'
   , PREREQ_PM    =>
-    { Test::More => 0.47
+    { Test::More   => 0.47
+    , Log::Report  => 0.26
     }
   , AUTHOR       => 'Mark Overmeer'
   , ABSTRACT     => 'Play trics with hash keys'
@@ -24,6 +25,7 @@ LICENSE         = artistic
 FIRST_YEAR      = 2002-2003,2007
 EMAIL           = perl@overmeer.net
 WEBSITE         = http://perl.overmeer.net/hash-case/
+SKIP_LINKS	= XML::LibXML
 
 __POSTAMBLE
 

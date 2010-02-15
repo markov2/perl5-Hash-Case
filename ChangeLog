@@ -1,11 +1,15 @@
 ==== version history of Hash::Case
 All change made by Mark Overmeer.
 
-version 1.01:
+version 1.01: Mon Feb 15 10:21:42 CET 2010
 
 	Fixes:
 
 	- do not use /bin/pwd in t/pod.t
+
+	Improvements:
+
+	- use Log::Report for error handling.
 
 version 1.006: Thu Jun 19 08:40:46 CEST 2008
 

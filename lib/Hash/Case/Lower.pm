@@ -1,8 +1,10 @@
+use strict;
+use warnings;
+
 package Hash::Case::Lower;
 use base 'Hash::Case';
 
-use strict;
-use Carp;
+use Log::Report 'hash-case';
 
 =chapter NAME
 
@@ -17,16 +19,19 @@ Hash::Case::Lower - hash with enforced lower cased keys
 
 =chapter DESCRIPTION
 
-Hash::Case::Lower extends Hash::Case, which lets you play various trics
-with hash keys.  See L<Hash::Case> for the other implementations.
+Hash::Case::Lower extends M<Hash::Case>, which lets you play various
+trics with hash keys. In this implementation, the fake hash is case
+insensitive and the keys stored in lower-case.
 
 =chapter METHODS
 
+=section Constructors
+
 =tie tie HASH, 'Hash::Case::Lower', [VALUES,] OPTIONS
 
-Define HASH to have only lower cased keys.  The hash is
-initialized with the VALUES, specified as ref-array or
-ref-hash.  Currently, there are no OPTIONS defined.
+Define HASH to have only lower cased keys.  The hash is initialized with
+the VALUES, specified as ref-array (with key value pairs) or ref-hash.
+Currently, there are no OPTIONS defined.
 
 =cut
 
@@ -35,7 +40,7 @@ sub init($)
 
     $self->SUPER::native_init($args);
 
-    croak "No options possible for ".__PACKAGE__
+    error __x"no options possible for {pkg}", pkg => __PACKAGE__
         if keys %$args;
 
     $self;

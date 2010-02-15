@@ -1,8 +1,10 @@
+use strict;
+use warnings;
+
 package Hash::Case::Preserve;
 use base 'Hash::Case';
 
-use strict;
-use Carp;
+use Log::Report 'hash-case';
 
 =chapter NAME
 
@@ -19,22 +21,26 @@ Hash::Case::Preserve - hash with enforced lower cased keys
 
 =chapter DESCRIPTION
 
-Hash::Case::Preserve extends Hash::Case, which lets you play various trics
-with hash keys.  See L<Hash::Case> for the other implementations.
+Hash::Case::Preserve extends M<Hash::Case>, which lets you play
+various trics with hash keys. This extension implements a fake
+hash which is case-insentive. The keys are administered in the
+casing as they were used: case-insensitive but case-preserving.
 
 =chapter METHODS
+
+=section Constructors
 
 =tie tie HASH, 'Hash::Case::Preserve', [VALUES,] OPTIONS
 
 Define HASH to be case insensitive, but case preserving.
-The hash is initialized with the VALUES, specified as ref-array or
-ref-hash.
+The hash is initialized with the VALUES, specified as ref-array (passing
+a list of key-value pairs) or ref-hash.
 
 OPTIONS is a list of key/value pairs, which specify how the hash
 must handle preservation.  Current options:
 
-=requires keep =E<gt> 'FIRST' | 'LAST'
-
+=option  keep 'FIRST' | 'LAST'
+=default keep 'LAST'
 Which casing is the prefered casing?  The FIRST appearance or the LAST.
 Only stores will affect the casing, deletes will undo the definition.
 Defaults to LAST, which is slightly faster.
@@ -51,7 +57,7 @@ sub init($)
     if($keep eq 'LAST')     { $self->{HCP_update} = 1 }
     elsif($keep eq 'FIRST') { $self->{HCP_update} = 0 }
     else
-    {   croak "Use 'FIRST' or 'LAST' with the option keep.\n";
+    {   error "use 'FIRST' or 'LAST' with the option keep";
     }
 
     $self->SUPER::native_init($args);
