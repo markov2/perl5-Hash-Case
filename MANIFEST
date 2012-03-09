@@ -5,7 +5,6 @@ lib/Hash/Case.pm
 lib/Hash/Case/Lower.pm
 lib/Hash/Case/Preserve.pm
 lib/Hash/Case/Upper.pm
-lib/Hash/Makefile.PL
 t/10lower.t
 t/20upper.t
 t/30pres1.t

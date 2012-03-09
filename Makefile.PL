@@ -4,7 +4,7 @@ use 5.008;
 
 WriteMakefile
   ( NAME	 => 'Hash::Case'
-  , VERSION      => '1.01'
+  , VERSION      => '1.02'
   , PREREQ_PM    =>
     { Test::More   => 0.47
     , Log::Report  => 0.26

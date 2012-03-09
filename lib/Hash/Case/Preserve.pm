@@ -41,7 +41,7 @@ must handle preservation.  Current options:
 
 =option  keep 'FIRST' | 'LAST'
 =default keep 'LAST'
-Which casing is the prefered casing?  The FIRST appearance or the LAST.
+Which casing is the preferred casing?  The FIRST appearance or the LAST.
 Only stores will affect the casing, deletes will undo the definition.
 Defaults to LAST, which is slightly faster.
 
