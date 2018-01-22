@@ -1,6 +1,7 @@
 ChangeLog
 MANIFEST
 Makefile.PL
+README.md
 lib/Hash/Case.pm
 lib/Hash/Case/Lower.pm
 lib/Hash/Case/Preserve.pm
@@ -9,4 +10,4 @@ t/10lower.t
 t/20upper.t
 t/30pres1.t
 t/31pres2.t
-t/99pod.t
+xt/99pod.t

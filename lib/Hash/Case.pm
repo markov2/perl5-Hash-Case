@@ -1,7 +1,11 @@
-use warnings;
-use strict;
+# This code is part of distribution Hash::Case.  Meta-POD processed with
+# OODoc into POD and HTML manual-pages.  See README.md
+# Copyright Mark Overmeer.  Licensed under the same terms as Perl itself.
 
 package Hash::Case;
+
+use warnings;
+use strict;
 
 use Tie::Hash;  # contains Tie::StdHash
 use base 'Tie::StdHash';
