@@ -9,8 +9,7 @@ use strict;
 
 use Tie::Hash;  # contains Tie::StdHash
 use base 'Tie::StdHash';
-
-use Log::Report 'hash-case';
+use Carp qw(croak);
 
 =chapter NAME
 
@@ -96,7 +95,7 @@ sub native_init($)
        if(!$add)               { ; }
     elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
     elsif(ref $add eq 'HASH')  { $self->addHashData($add)  }
-    else { error "cannot initialize the native hash this way" }
+    else { croak "cannot initialize the native hash this way" }
 
     $self;
 }
@@ -110,7 +109,7 @@ sub wrapper_init($)
        if(!$add)               { ; }
     elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
     elsif(ref $add eq 'HASH')  { $self->setHash($add)  }
-    else { error "cannot initialize a wrapping hash this way" }
+    else { croak "cannot initialize a wrapping hash this way" }
 
     $self;
 }

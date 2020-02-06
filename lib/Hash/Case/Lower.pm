@@ -7,8 +7,7 @@ use base 'Hash::Case';
 
 use strict;
 use warnings;
-
-use Log::Report 'hash-case';
+use Carp   qw(croak);
 
 =chapter NAME
 
@@ -44,7 +43,7 @@ sub init($)
 
     $self->SUPER::native_init($args);
 
-    error __x"no options possible for {pkg}", pkg => __PACKAGE__
+    croak "no options possible for ". __PACKAGE__
         if keys %$args;
 
     $self;

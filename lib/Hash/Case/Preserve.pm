@@ -7,6 +7,7 @@ use base 'Hash::Case';
 
 use strict;
 use warnings;
+use Carp 'croak';
 
 use Log::Report 'hash-case';
 
@@ -61,7 +62,7 @@ sub init($)
     if($keep eq 'LAST')     { $self->{HCP_update} = 1 }
     elsif($keep eq 'FIRST') { $self->{HCP_update} = 0 }
     else
-    {   error "use 'FIRST' or 'LAST' with the option keep";
+    {   croak "use 'FIRST' or 'LAST' with the option keep";
     }
 
     $self->SUPER::native_init($args);

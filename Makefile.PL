@@ -7,7 +7,6 @@ WriteMakefile
   , VERSION      => '1.04'
   , PREREQ_PM    =>
     { Test::More   => 0.47
-    , Log::Report  => 0.26
     }
   , AUTHOR       => 'Mark Overmeer <markov@cpan.org>'
   , ABSTRACT     => 'Play trics with hash keys'
