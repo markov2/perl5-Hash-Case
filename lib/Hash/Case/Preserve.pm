@@ -9,8 +9,6 @@ use strict;
 use warnings;
 use Carp 'croak';
 
-use Log::Report 'hash-case';
-
 =chapter NAME
 
 Hash::Case::Preserve - hash with enforced lower cased keys
