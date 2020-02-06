@@ -2,7 +2,7 @@
 
 All changes made by Mark Overmeer, unless explicitly stated otherwise.
 
-version 1.04:
+version 1.04: Thu  6 Feb 16:22:37 CET 2020
 
 	Changes:
 	- replace Log::Report by croak on request by [Ed Avis]  GitHub#1
