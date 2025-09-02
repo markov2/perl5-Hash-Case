@@ -30,11 +30,11 @@ insensitive and the keys stored in lower-case.
 
 =section Constructors
 
-=tie tie HASH, 'Hash::Case::Lower', [VALUES,] OPTIONS
+=tie TIEHASH, 'Hash::Case::Lower', [$values,] %options
 
-Define HASH to have only lower cased keys.  The hash is initialized with
-the VALUES, specified as ref-array (with key value pairs) or ref-hash.
-Currently, there are no OPTIONS defined.
+Define TIEHASH to have only lower-cased keys.  The hash is initialized with
+the $values, specified as ARRAY (with key-value pairs) or HASH.
+Currently, there are no %options defined.
 
 =cut
 

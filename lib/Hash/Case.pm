@@ -57,12 +57,11 @@ The actual casing is ignored, but not forgotten.
 
 =section Constructors
 
-=tie tie HASH, TIE, [VALUES,] OPTIONS
-
-Tie the HASH with the TIE package which extends L<Hash::Case>.  The OPTIONS
-differ per implementation: read the manual page for the package you actually
-use.  The VALUES is a reference to an array containing key-value pairs,
-or a reference to a hash: they fill the initial hash.
+=tie TIEHASH, TIE, [$values,] %options
+Tie the HASH with the TIE package which extends L<Hash::Case>.
+The OPTIONS differ per implementation: read the manual page for the
+package you actually use.  The optional $values is a reference to an ARRAY
+containing key-value pairs, or a HASH: they fill-in the initial hash.
 
 =examples
 

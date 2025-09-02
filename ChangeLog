@@ -4,6 +4,9 @@ All changes made by Mark Overmeer, unless explicitly stated otherwise.
 
 version 1.06:
 
+	Improvements:
+	- changed =tie documentation syntax.
+
 version 1.05: Thu  6 Feb 16:41:09 CET 2020
 
 	Fixes:
