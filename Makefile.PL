@@ -6,7 +6,7 @@ use warnings;
 use strict;
 
 # Use command 'oodist' to produce your whole software release.
-my $version  = '3.06',
+my $version  = '1.07',
 my $git      = "https://github.com/markov2/perl5-Hash-Case";
 my $publish  = "../public_html/hash-case";
 my $homepage = "http://perl.overmeer.net/CPAN/";
