@@ -1,26 +1,27 @@
-# This code is part of distribution Hash::Case.  Meta-POD processed with
-# OODoc into POD and HTML manual-pages.  See README.md
-# Copyright Mark Overmeer.  Licensed under the same terms as Perl itself.
+#oodist: *** DO NOT USE THIS VERSION FOR PRODUCTION ***
+#oodist: This file contains OODoc-style documentation which will get stripped
+#oodist: during its release in the distribution.  You can use this file for
+#oodist: testing, however the code of this development version may be broken!
 
 package Hash::Case;
+use base 'Tie::StdHash';
 
 use warnings;
 use strict;
 
-use Tie::Hash;  # contains Tie::StdHash
-use base 'Tie::StdHash';
-use Carp qw(croak);
+use Carp       qw/croak/;
 
+#--------------------
 =chapter NAME
 
 Hash::Case - base class for hashes with key-casing requirements
 
 =chapter SYNOPSIS
 
- use Hash::Case::Lower;
- tie my(%lchash), 'Hash::Case::Lower';
- $lchash{StraNGeKeY} = 3;
- print keys %lchash;  # strangekey
+  use Hash::Case::Lower;
+  tie my(%lchash), 'Hash::Case::Lower';
+  $lchash{StraNGeKeY} = 3;
+  print keys %lchash;  # strangekey
 
 =chapter DESCRIPTION
 
@@ -36,19 +37,16 @@ The following strategies are implemented:
 =over 4
 
 =item * Hash::Case::Lower (native hash)
-
 Keys are always considered lower case. The internals of this
 module translate any incoming key to lower case before it is used.
 
 =item * Hash::Case::Upper (native hash)
-
 Like the ::Lower, but then all keys are always translated into
 upper case.  This module can be of use for some databases, which
 do translate everything to capitals as well.  To avoid confusion,
 you may want to have you own internal Perl hash do this as well.
 
 =item * Hash::Case::Preserve
-
 The actual casing is ignored, but not forgotten.
 
 =back
@@ -57,86 +55,85 @@ The actual casing is ignored, but not forgotten.
 
 =section Constructors
 
-=tie %hash, TIE, [$values,] %options
-Tie the %hash with the TIE class (package which extends L<Hash::Case>).
+=tie %hash, $class, [$values,] %options
+Tie the %hash with the $class (package which extends L<Hash::Case>).
 The %options differ per implementation: read the manual page for the
 package you actually use.  The optional $values is a reference to an ARRAY
 (containing key-value PAIRS) or a HASH: they fill-in the initial %hash.
 
 =examples
 
- my %x;
- tie %x, 'Hash::Case::Lower';
- $x{Upper} = 3;
- print keys %x;       # 'upper'
+  my %x;
+  tie %x, 'Hash::Case::Lower';
+  $x{Upper} = 3;
+  print keys %x;       # 'upper'
 
- my @y = (ABC => 3, DeF => 4);
- tie %x, 'Hash::Case::Lower', \@y;
- print keys %x;       # 'abc' 'def'
+  my @y = (ABC => 3, DeF => 4);
+  tie %x, 'Hash::Case::Lower', \@y;
+  print keys %x;       # 'abc' 'def'
 
- my %z = (ABC => 3, DeF => 4);
- tie %x, 'Hash::Case::Lower', \%z;
+  my %z = (ABC => 3, DeF => 4);
+  tie %x, 'Hash::Case::Lower', \%z;
 =cut
 
 sub TIEHASH(@)
-{   my $class = shift;
-    my $to    = @_ % 2 ? shift : undef;
-    my %opts  = (@_, add => $to);
-    (bless {}, $class)->init( \%opts );
+{	my $class = shift;
+	my $to    = @_ % 2 ? shift : undef;
+	my %opts  = (@_, add => $to);
+	(bless {}, $class)->init( \%opts );
 }
 
 # Used for case-insensitive hashes which do not need more than
 # one hash.
 sub native_init($)
-{   my ($self, $args) = @_;
-    my $add = delete $args->{add};
+{	my ($self, $args) = @_;
+	my $add = delete $args->{add};
 
-       if(!$add)               { ; }
-    elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
-    elsif(ref $add eq 'HASH')  { $self->addHashData($add)  }
-    else { croak "cannot initialize the native hash this way" }
+	   if(!$add)               { ; }
+	elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
+	elsif(ref $add eq 'HASH')  { $self->addHashData($add)  }
+	else { croak "cannot initialize the native hash this way" }
 
-    $self;
+	$self;
 }
 
 # Used for case-insensitive hashes which are implemented around
 # an existing hash.
 sub wrapper_init($)
-{   my ($self, $args) = @_;
-    my $add = delete $args->{add};
+{	my ($self, $args) = @_;
+	my $add = delete $args->{add};
 
-       if(!$add)               { ; }
-    elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
-    elsif(ref $add eq 'HASH')  { $self->setHash($add)  }
-    else { croak "cannot initialize a wrapping hash this way" }
+	   if(!$add)               { ; }
+	elsif(ref $add eq 'ARRAY') { $self->addPairs(@$add) }
+	elsif(ref $add eq 'HASH')  { $self->setHash($add)  }
+	else { croak "cannot initialize a wrapping hash this way" }
 
-    $self;
+	$self;
 }
 
-=method addPairs PAIRS
+=method addPairs @pairs
 Specify an even length list of alternating key and value to be stored in
 the hash.
 =cut
 
 sub addPairs(@)
-{   my $self = shift;
-    $self->STORE(shift, shift) while @_;
-    $self;
+{	my $self = shift;
+	$self->STORE(shift, shift) while @_;
+	$self;
 }
 
-=method addHashData HASH
-Add the data of a hash (passed as reference) to the created tied hash.  The
-existing values in the hash remain, the keys are adapted to the needs of the
-the casing.
+=method addHashData \%data
+Add the %data to the created tied hash.  The existing values in the hash
+remain, the keys are adapted to the needs of the the casing.
 =cut
 
 sub addHashData($)
-{   my ($self, $data) = @_;
-    while(my ($k, $v) = each %$data) { $self->STORE($k, $v) }
-    $self;
+{	my ($self, $data) = @_;
+	while(my ($k, $v) = each %$data) { $self->STORE($k, $v) }
+	$self;
 }
 
-=method setHash HASH
+=method setHash \%data
 The functionality differs for native and wrapper hashes.  For native
 hashes, this is the same as first clearing the hash, and then a call
 to M<addHashData()>.  Wrapper hashes will use the hash you specify here
@@ -144,9 +141,9 @@ to store the data, and re-create the mapping hash.
 =cut
 
 sub setHash($)
-{   my ($self, $hash) = @_;   # the native implementation is the default.
-    %$self = %$hash;
-    $self;
+{	my ($self, $hash) = @_;   # the native implementation is the default.
+	%$self = %$hash;
+	$self;
 }
 
 1;

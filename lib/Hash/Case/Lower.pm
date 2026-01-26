@@ -1,28 +1,31 @@
-# This code is part of distribution Hash::Case.  Meta-POD processed with
-# OODoc into POD and HTML manual-pages.  See README.md
-# Copyright Mark Overmeer.  Licensed under the same terms as Perl itself.
+#oodist: *** DO NOT USE THIS VERSION FOR PRODUCTION ***
+#oodist: This file contains OODoc-style documentation which will get stripped
+#oodist: during its release in the distribution.  You can use this file for
+#oodist: testing, however the code of this development version may be broken!
 
 package Hash::Case::Lower;
 use base 'Hash::Case';
 
 use strict;
 use warnings;
-use Carp   qw(croak);
 
+use Carp   qw/croak/;
+
+#--------------------
 =chapter NAME
 
 Hash::Case::Lower - hash with enforced lower cased keys
 
 =chapter SYNOPSIS
 
- use Hash::Case::Lower;
- tie my(%lchash), 'Hash::Case::Lower';
- $lchash{StraNGeKeY} = 3;
- print keys %lchash;  # strangekey
+  use Hash::Case::Lower;
+  tie my(%lchash), 'Hash::Case::Lower';
+  $lchash{StraNGeKeY} = 3;
+  print keys %lchash;  # strangekey
 
 =chapter DESCRIPTION
 
-Hash::Case::Lower extends M<Hash::Case>, which lets you play various
+Hash::Case::Lower extends Hash::Case, which lets you play various
 trics with hash keys. In this implementation, the fake hash is case
 insensitive and the keys stored in lower-case.
 
@@ -39,14 +42,14 @@ Currently, there are no %options defined.
 =cut
 
 sub init($)
-{   my ($self, $args) = @_;
+{	my ($self, $args) = @_;
 
-    $self->SUPER::native_init($args);
+	$self->SUPER::native_init($args);
 
-    croak "no options possible for ". __PACKAGE__
-        if keys %$args;
+	! keys %$args
+		or croak "no options possible for ". __PACKAGE__;
 
-    $self;
+	$self;
 }
 
 sub FETCH($)  { $_[0]->{lc $_[1]} }
