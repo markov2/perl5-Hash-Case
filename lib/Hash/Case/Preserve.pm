@@ -37,8 +37,7 @@ casing as they were used: case-insensitive but case-preserving.
 =section Constructors
 
 =tie %hash, 'Hash::Case::Preserve', [$values,] %options
-
-Define %hash to be case insensitive, but case preserving.
+Define C<%hash> to be case insensitive, but case preserving.
 The hash is initialized with the $values, specified as ARRAY (passing
 flat key-value pairs) or HASH.
 

@@ -35,7 +35,7 @@ insensitive and the keys stored in lower-case.
 
 =tie %hash, 'Hash::Case::Lower', [$values,] %options
 
-Define %hash to have only lower-cased keys.  The hash is initialized with
+Define C<%hash> to have only lower-cased keys.  The hash is initialized with
 the $values, specified as ARRAY (with key-value PAIRS) or HASH.
 Currently, there are no %options defined.
 

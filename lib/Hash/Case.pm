@@ -23,6 +23,10 @@ Hash::Case - base class for hashes with key-casing requirements
   $lchash{StraNGeKeY} = 3;
   print keys %lchash;  # strangekey
 
+  (tied %lchash)->addPairs(key => value, ...);
+  (tied %lchash)->addHashData(\%data);
+  (tied %lchash)->setHash(\%replacement);
+
 =chapter DESCRIPTION
 
 Hash::Case is the base class for various classes which tie special
@@ -56,10 +60,10 @@ The actual casing is ignored, but not forgotten.
 =section Constructors
 
 =tie %hash, $class, [$values,] %options
-Tie the %hash with the $class (package which extends L<Hash::Case>).
+Tie the C<%hash> with the $class (package which extends L<Hash::Case>).
 The %options differ per implementation: read the manual page for the
 package you actually use.  The optional $values is a reference to an ARRAY
-(containing key-value PAIRS) or a HASH: they fill-in the initial %hash.
+(containing key-value PAIRS) or a HASH: they fill-in the initial C<%hash>.
 
 =examples
 
@@ -110,6 +114,11 @@ sub wrapper_init($)
 
 	$self;
 }
+
+#-----------
+=section Hidden object access
+Besides all the usual HASH actions which are implemented for the tied
+C<%hash>, you can also call methods on the C<tied()> object.
 
 =method addPairs @pairs
 Specify an even length list of alternating key and value to be stored in

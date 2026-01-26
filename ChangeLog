@@ -8,11 +8,11 @@ version 1.06:
 	- require Perl 5.16 (2015)
 
 	Improvements:
-	- changed =tie documentation syntax.
 	- convert Makefile.PL to OODoc 3.06.
 	- convert code and syntax to new preferences.
 	- add .gitignore
 	- add README.md
+	- improve documentation
 
 version 1.05: Thu  6 Feb 16:41:09 CET 2020
 

@@ -25,6 +25,7 @@ my %oodist   = (
 	parser   => {
 		syntax         => 'markov',
 		skip_links     => [
+			'Tie::StdHash',
 		],
 		pmhead         => undef,
 	},
@@ -50,7 +51,7 @@ my %oodist   = (
 
 my %requires = (
 	'Tie::Hash'        => 0,
-	'Tie::StdHash'     => 0,
+#	'Tie::StdHash'     => 0,  # hidden component of Tie::Hash
 	'Carp'             => 0,
 );
 

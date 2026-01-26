@@ -34,7 +34,7 @@ insensitive and the keys stored in upper-case.
 =section Constructors
 
 =tie %hash, 'Hash::Case::Upper', [$values,] %options
-Define %hash to have only upper-cased keys.  The hash is
+Define C<%hash> to have only upper-cased keys.  The hash is
 initialized with the $values, specified as ARRAY or
 HASH.  Currently, there are no %options defined.
 =cut
