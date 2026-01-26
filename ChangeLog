@@ -11,6 +11,7 @@ version 1.06:
 	- changed =tie documentation syntax.
 	- convert Makefile.PL to OODoc 3.06.
 	- convert code and syntax to new preferences.
+	- add .gitignore
 
 version 1.05: Thu  6 Feb 16:41:09 CET 2020
 
