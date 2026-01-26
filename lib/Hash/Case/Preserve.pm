@@ -33,13 +33,13 @@ casing as they were used: case-insensitive but case-preserving.
 
 =section Constructors
 
-=tie TIEHASH, 'Hash::Case::Preserve', [$values,] %options
+=tie %hash, 'Hash::Case::Preserve', [$values,] %options
 
-Define TIEHASH to be case insensitive, but case preserving.
+Define %hash to be case insensitive, but case preserving.
 The hash is initialized with the $values, specified as ARRAY (passing
 a list of key-value pairs) or HASH.
 
-The %options is a LIST of key/value pairs, which specify how the hash
+The %options is a LIST of key-value PAIRS, which specify how the hash
 must handle preservation.  Current options:
 
 =option  keep 'FIRST' | 'LAST'
