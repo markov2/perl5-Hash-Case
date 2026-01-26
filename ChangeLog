@@ -2,7 +2,7 @@
 
 All changes made by Mark Overmeer, unless explicitly stated otherwise.
 
-version 1.07:
+version 1.07: Mon 26 Jan 14:24:32 CET 2026
 
 	Fixes:
 	- Tie::StdHash needs to be compiled via Tie::Hash.
