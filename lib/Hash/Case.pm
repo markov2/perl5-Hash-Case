@@ -4,6 +4,8 @@
 #oodist: testing, however the code of this development version may be broken!
 
 package Hash::Case;
+
+use Tie::Hash;  # Tie::StdHash is a hidden package inside this :-(
 use base 'Tie::StdHash';
 
 use warnings;
