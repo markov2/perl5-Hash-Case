@@ -4,6 +4,9 @@ All changes made by Mark Overmeer, unless explicitly stated otherwise.
 
 version 1.06:
 
+	Changes:
+	- require Perl 5.16 (2015)
+
 	Improvements:
 	- changed =tie documentation syntax.
 
