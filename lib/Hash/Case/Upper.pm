@@ -14,7 +14,7 @@ use Carp  qw/croak/;
 #--------------------
 =chapter NAME
 
-Hash::Case::Upper - native hash with enforced lower cased keys
+Hash::Case::Upper - native hash with enforced upper cased keys
 
 =chapter SYNOPSIS
 
