@@ -59,7 +59,7 @@ WriteMakefile
 	NAME		 => 'Hash::Case',
 	VERSION      => $version,
 	AUTHOR       => 'Mark Overmeer <markov@cpan.org>',
-	ABSTRACT     => 'Play trics with HASH keys',
+	ABSTRACT     => 'Play tricks with HASH keys',
 	LICENSE      => 'perl_5',
 
 	META_MERGE => {
