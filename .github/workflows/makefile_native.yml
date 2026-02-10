@@ -38,10 +38,18 @@ jobs:
           cpanm --notest Module::Install --version
           cpanm --installdeps --notest --version .
 
-    - name: Regular Tests
+    - name: Run Tests on Linux and macOS
+      if: ${{ matrix.runner != 'windows-latest' }}
       run: |
           perl Makefile.PL
           make
           make test
+
+    - name: Run Tests on Windows
+      if: ${{ matrix.runner == 'windows-latest' }}
+      run: |
+          perl Makefile.PL
+          gmake
+          gmake test
 
 
